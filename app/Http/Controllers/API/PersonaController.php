@@ -11,6 +11,7 @@ class PersonaController extends Controller
     public function index($id=null){
         if ($id)
             return response()->json(["persona"=>Persona::find($id)],200);
+        return response()->json(["personas"=>Persona::all()],200);
     }
     public function guardar(Request $request){
         $persona = new Persona();
@@ -22,8 +23,7 @@ class PersonaController extends Controller
         if($persona->save())
             return response()->json(["personas"=>$persona],201);
         return response()->json(null,400);
-        
     }
 
-
+    
 }

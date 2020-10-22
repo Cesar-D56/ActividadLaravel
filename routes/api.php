@@ -27,4 +27,5 @@ Route::post("/personas/create","API\PersonaController@guardar");
 
 
 
-//Productos
+//Productos//
+Route::get("/producto/id/{id?}","API\ProductoController@index")->where("id","[0-9]+");
