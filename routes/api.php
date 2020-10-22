@@ -18,4 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/personas{id?}","API\PersonaController@index")->where("id","[0-9]+");
+//Personas//
+Route::get("/personas/userid/{id?}","API\PersonaController@index")->where("id","[0-9]+");
+Route::post("/personas/create","API\PersonaController@guardar");
+
+
+//Comentarios//
+
+
+
+//Productos
