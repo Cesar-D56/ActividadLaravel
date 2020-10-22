@@ -9,19 +9,28 @@ use App\Modelos\Producto;
 class ProductoController extends Controller
 {
     public function index($id=null){
-        if ($id)
+        if ($id){
             return response()->json(["Producto"=>Producto::find($id)],200);
+        }
         return response()->json(["Productos"=>Producto::all()],200);
     }
 
-    public function guardar(Request $request){
+    public function nuevo(Request $request){
         $producto = new Producto();
-        $persona->nombre = $request->nombre;
-        $persona->apellido_p = $request->apellido_p;
+        $producto->nombre = $request->nombre;
+        $producto->tipo = $request->tipo;
 
-        if($persona->save())
-            return response()->json(["personas"=>$persona],201);
+        if($producto->save())
+            return response()->json(["Producto"=>$producto],201);
         return response()->json(null,400);
+        
+    }
+    public function eliminar($id=null){
+        if (Producto::find($id)){
+            Producto::find($id)->delete();
+            return response()->json(["Producto Eliminado"],200);
+        }
+        return response()->json(["Producto No encontrado"],200);
         
     }
 }
