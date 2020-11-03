@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("/personas/userid/{id?}","API\PersonaController@index")->where("id","[0-9]+");
 Route::post("/personas/crear","API\PersonaController@guardar");
 Route::delete("/personas/eliminar/{id?}","API\PersonaController@eliminar")->where("id","[0-9]+");
+Route::post("/personas/userid/","API\PersonaController@userid")->where("id","[0-9]+");
 
 
 

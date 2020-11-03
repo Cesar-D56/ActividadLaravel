@@ -11,17 +11,17 @@ use App\Modelos\Producto;
 class ComentarioController extends Controller
 {
     public function comentuser($id=null){
-        $persona= new Persona();
         $producto= new Producto();
-        $comentario= new Comentario();
-        if ($persona::find($id)){
+        if (Persona::find($id)){
 
-            
-            $comentarios=$comentario::'comentarios'->where('persona_id','=',$id);
-            
+            $comentarios = $Comentarios::table(Comentario)
+            ->join(Persona, 'comentarios.persona_id', '=', 'personas.id')
+            ->join(Producto, 'comentarios.producto_id', '=', 'productos.id')
+            ->select('personas.nombre', 'productos.nombre', 'comentarios.titulo','comentarios.comentario')
+            ->where('personas.id','=',$id)
+            ->get();
 
-
-            return response()->json(["Comentarios del usuario"=>$comentario],200);
+            return response()->json(["Comentarios del usuario"=>$comentarios],200);
         }
         return response()->json(["No se encontro el usuario"],200);
     }

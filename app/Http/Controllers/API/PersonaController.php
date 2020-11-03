@@ -13,6 +13,12 @@ class PersonaController extends Controller
             return response()->json(["persona"=>Persona::find($id)],200);
         return response()->json(["personas"=>Persona::all()],200);
     }
+    public function userid(Request $id){
+        $id2=$id->input('user');
+        if ($id2)
+            return response()->json(["persona"=>Persona::find($id2)],200);
+        return response()->json(["personas"=>Persona::all()],200);
+    }
     public function guardar(Request $request){
         $persona = new Persona();
         $persona->nombre = $request->nombre;
